@@ -2,12 +2,15 @@ package com.broken.githubapiproject.client;
 
 import com.broken.githubapiproject.client.dto.BranchDto;
 import com.broken.githubapiproject.client.dto.RepositoryDto;
+import com.broken.githubapiproject.exception.GitHubUserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 
@@ -21,12 +24,21 @@ public class GitHubClient {
 
 
     public List<RepositoryDto> fetchRepositories(String username){
-                return restClient.get().uri("/users/{username}/repos", username).retrieve().body(new ParameterizedTypeReference<>() {
+                return restClient.get()
+                        .uri("/users/{username}/repos", username)
+                        .retrieve()
+                        .onStatus(HttpStatusCode::is4xxClientError, ((request, response) -> {
+                            throw new GitHubUserNotFoundException(username);
+                        }))
+                        .body(new ParameterizedTypeReference<>() {
                 });
             }
 
             public List<BranchDto> fetchBranches(String username, String repo){
-                return restClient.get().uri("/repos/{username}/{repo}/branches", username, repo).retrieve().body(new ParameterizedTypeReference<>() {
+                return restClient.get()
+                        .uri("/repos/{username}/{repo}/branches", username, repo)
+                        .retrieve()
+                        .body(new ParameterizedTypeReference<>() {
                 });
             }
 
