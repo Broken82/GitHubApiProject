@@ -32,7 +32,7 @@ Minimal REST service that returns **all non‑forked public repositories of a Gi
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/your‑org/github‑api‑project.git
+git clone https://github.com/Broken82/github‑api‑project.git
 cd github‑api‑project
 
 # 2. Build the jar
