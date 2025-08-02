@@ -13,7 +13,8 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(GitHubUserNotFoundException.class)
     public ResponseEntity<ErrorResponseDto> handleNotFound(GitHubUserNotFoundException e){
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
                 .body(new ErrorResponseDto(HttpStatus.NOT_FOUND.value(), e.getMessage()));
     }
 }
