@@ -6,7 +6,7 @@ Minimal REST service that returns **all non‑forked public repositories of a Gi
 
 ## Features
 
-* `GET /api/v1/users/{username}/repositories` – single entry point
+* `GET /api/repos/{username}` – single entry point
 * Filters out forked repositories
 * Returns for each repository
   * repository name
@@ -48,7 +48,7 @@ java -jar target/github-api-project.jar
 ## Usage Example
 
 ```bash
-curl http://localhost:8080/api/v1/users/octocat/repositories | jq
+curl http://localhost:8080/api/repos/octocat | jq
 ```
 
 ```json
@@ -58,7 +58,7 @@ curl http://localhost:8080/api/v1/users/octocat/repositories | jq
     "repositoryOwner": "octocat",
     "branches": [
       {
-        "name": "main",
+        "name": "master",
         "lastCommitSha": "7fd1a60b01f91b314f59955d894fd22a7a2c5a3a"
       }
     ]
