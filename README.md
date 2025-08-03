@@ -28,6 +28,7 @@ Minimal REST service that returns **all non‑forked public repositories of a Gi
 
 ---
 
+
 ## Installation & Running
 
 ```bash
@@ -42,6 +43,17 @@ mvn clean package
 java -jar target/github-api-project.jar
 ```
 
+---
+
+## API Token
+
+```bash
+# 1. Create your secrets file in /src/main/resources/
+cp application-secrets.properties.template application-secrets.properties
+
+# 2. Insert your GitHub Token
+github.token=YOUR_TOKEN
+```
 
 ---
 
