@@ -29,7 +29,7 @@ public class DataService {
                 .toList();
 
 
-        return repoList.stream()
+        return repoList.parallelStream()
                 .map(
                         repositoryDto -> {
                             List<BranchDto> branchList = gitHubClient.fetchBranches(nickname, repositoryDto.name());
