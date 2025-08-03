@@ -55,6 +55,10 @@ cp application-secrets.properties.template application-secrets.properties
 github.token=YOUR_TOKEN
 ```
 
+>  **Running without a token**  
+> Delete `@Value("${github.token}")` **and** the `.defaultHeader(...)` call from **RestClientConfig.java**.  
+
+
 ---
 
 ## Usage Example
